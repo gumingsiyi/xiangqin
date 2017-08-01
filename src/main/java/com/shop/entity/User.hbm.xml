@@ -44,5 +44,8 @@
         <property name="photo">
             <column name="photo" sql-type="int(11)" not-null="true" default="0"/>
         </property>
+        <property name="IDno">
+            <column name="IDno" sql-type="varchar(20)" not-null="false"/>
+        </property>
     </class>
 </hibernate-mapping>

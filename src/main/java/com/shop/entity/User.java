@@ -24,7 +24,7 @@ public class User {
     private String requirement;
     private String intro;
     private int photo;
-    pr
+    private String IDno;
 
     @Id
     @Column(name = "id", nullable = false, length = 15)
@@ -154,6 +154,16 @@ public class User {
 
     public void setPhoto(int photo) {
         this.photo = photo;
+    }
+
+    @Basic
+    @Column(name = "IDno", length = 20)
+    public String getIDno() {
+        return IDno;
+    }
+
+    public void setIDno(String IDno) {
+        this.IDno = IDno;
     }
 
     @Override
