@@ -4,8 +4,8 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
-import com.shop.entity.UserInfoEntity;
-import com.shop.service.UserInfoService;
+import com.shop.entity.User;
+import com.shop.service.UserService;
 import com.shop.utils.AjaxUtil;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
@@ -26,59 +26,59 @@ import java.util.Map;
 @Results({@Result(name = "success", location = "userinfo.jsp")})
 
 public class UserInfoAction extends ActionSupport implements
-        ModelDriven<UserInfoEntity>, Preparable {
+        ModelDriven<User>, Preparable {
     private static final long serialVersionUID = -2301203156032690317L;
 
     private static final Logger LOGGER = Logger.getLogger(UserInfoAction.class);
-    private Integer id;
-    private UserInfoEntity userInfo;
-    private List<UserInfoEntity> userInfos;
+    private String id;
+    private User user;
+    private List<User> userInfos;
 
 
-    private UserInfoService userInfoService;
+    private UserService userService;
     @Autowired
-    public void setUserInfoService(UserInfoService userInfoService) {
-        this.userInfoService = userInfoService;
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public UserInfoEntity getUserInfo() {
-        return userInfo;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserInfo(UserInfoEntity userInfo) {
-        this.userInfo = userInfo;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public List<UserInfoEntity> getUserInfos() {
+    public List<User> getUserInfos() {
         return userInfos;
     }
 
-    public void setUserInfos(List<UserInfoEntity> userInfos) {
+    public void setUserInfos(List<User> userInfos) {
         this.userInfos = userInfos;
     }
 
     @Override
-    public UserInfoEntity getModel() {
+    public User getModel() {
         if (null != id) {
-            userInfo = userInfoService.get(id);
+            user = userService.get(id);
         } else {
-            userInfo = new UserInfoEntity();
+            user = new User();
         }
-        return userInfo;
+        return user;
     }
 
     @Override
     public String execute() throws Exception {
         LOGGER.info("查询所有用户");
-        userInfos = userInfoService.findAll();
+        userInfos = userService.findAll();
         Map session = ActionContext.getContext().getSession();
         session.put("userInfos", userInfos);
         return SUCCESS;
@@ -87,8 +87,8 @@ public class UserInfoAction extends ActionSupport implements
     public void detail() throws IOException {
         String id = ServletActionContext.getRequest().getParameter("id");
         LOGGER.info("查看用户详情：" + id);
-        userInfo = userInfoService.get(Integer.valueOf(id));
-        AjaxUtil.ajaxJSONResponse(userInfo);
+        user = userService.get(id);
+        AjaxUtil.ajaxJSONResponse(user);
         //指定输出内容类型和编码
         String contentType = "text/html;charset=utf-8";
         ServletActionContext.getResponse().setContentType(contentType);
@@ -96,7 +96,7 @@ public class UserInfoAction extends ActionSupport implements
         PrintWriter out = ServletActionContext.getResponse().getWriter();
         try{
             //直接进行文本操作
-            out.print(AjaxUtil.ajaxJSONResponse(userInfo));
+            out.print(AjaxUtil.ajaxJSONResponse(user));
             out.flush();
             out.close();
         }catch(Exception ex){

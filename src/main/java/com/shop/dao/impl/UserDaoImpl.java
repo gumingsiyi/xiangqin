@@ -1,7 +1,7 @@
 package com.shop.dao.impl;
 
-import com.shop.dao.UserInfoDao;
-import com.shop.entity.UserInfoEntity;
+import com.shop.dao.UserDao;
+import com.shop.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +10,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * Created by stiles on 2017/7/24.
+ * Created by stiles on 2017/8/1.
  */
-@Repository("userInfoDao")
-public class UserInfoDaoImpl implements UserInfoDao {
-
+@Repository("userDao")
+public class UserDaoImpl implements UserDao {
     private SessionFactory sessionFactory;
     @Autowired
     public void setSessionFactory(SessionFactory sessionFactory) {
@@ -26,41 +25,41 @@ public class UserInfoDaoImpl implements UserInfoDao {
     }
 
     @Override
-    public UserInfoEntity load(Integer id) {
-        return this.getCurrentSession().load(UserInfoEntity.class, id);
+    public User load(String id) {
+        return this.getCurrentSession().load(User.class, id);
     }
 
     @Override
-    public UserInfoEntity get(Integer id) {
-        return this.getCurrentSession().get(UserInfoEntity.class, id);
+    public User get(String id) {
+        return this.getCurrentSession().get(User.class, id);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<UserInfoEntity> findAll() {
-        return (List<UserInfoEntity>) this.getCurrentSession()
-                .createQuery("from UserInfoEntity ").list();
+    public List<User> findAll() {
+        return (List<User>) this.getCurrentSession()
+                .createQuery("from User ").list();
     }
 
     @Override
-    public void persist(UserInfoEntity entity) {
+    public void persist(User entity) {
         this.getCurrentSession().persist(entity);
 
     }
 
     @Override
-    public Integer save(UserInfoEntity entity) {
-        return (Integer) this.getCurrentSession().save(entity);
+    public String save(User entity) {
+        return (String) this.getCurrentSession().save(entity);
     }
 
     @Override
-    public void saveOrUpdate(UserInfoEntity entity) {
+    public void saveOrUpdate(User entity) {
         this.getCurrentSession().saveOrUpdate(entity);
     }
 
     @Override
-    public void delete(Integer id) {
-        UserInfoEntity entity = this.load(id);
+    public void delete(String id) {
+        User entity = this.load(id);
         this.getCurrentSession().delete(entity);
     }
 
