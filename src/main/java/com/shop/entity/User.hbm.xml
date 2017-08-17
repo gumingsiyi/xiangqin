@@ -21,28 +21,28 @@
             <column name="birth" sql-type="date"/>
         </property>
         <property name="edu">
-            <column name="edu" sql-type="int(11)" not-null="true"/>
+            <column name="edu" sql-type="int(11)" not-null="false"/>
         </property>
         <property name="character">
-            <column name="character" sql-type="varchar(100)" length="100" not-null="true"/>
+            <column name="cha" sql-type="varchar(100)" length="100" not-null="false"/>
         </property>
         <property name="workplace">
-            <column name="workplace" sql-type="varchar(50)" length="50" not-null="true"/>
+            <column name="workplace" sql-type="varchar(50)" length="50" not-null="false"/>
         </property>
         <property name="job">
-            <column name="job" sql-type="varchar(10)" length="10" not-null="true"/>
+            <column name="job" sql-type="varchar(10)" length="10" not-null="false"/>
         </property>
         <property name="income">
-            <column name="income" sql-type="int(11)" not-null="true"/>
+            <column name="income" sql-type="int(11)" not-null="false"/>
         </property>
         <property name="requirement">
-            <column name="requirement" sql-type="varchar(255)" not-null="true"/>
+            <column name="requirement" sql-type="varchar(255)" not-null="false"/>
         </property>
         <property name="intro">
-            <column name="intro" sql-type="varchar(255)" not-null="true"/>
+            <column name="intro" sql-type="varchar(255)" not-null="false"/>
         </property>
         <property name="photo">
-            <column name="photo" sql-type="int(11)" not-null="true" default="0"/>
+            <column name="photo" sql-type="int(11)" not-null="false" default="0"/>
         </property>
         <property name="IDno">
             <column name="IDno" sql-type="varchar(20)" not-null="false"/>

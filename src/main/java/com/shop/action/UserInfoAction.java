@@ -23,7 +23,11 @@ import java.util.Map;
 @Namespace("/user")
 @Action("userinfo")
 @AllowedMethods("detail")
-@Results({@Result(name = "success", location = "userinfo.jsp")})
+@Results({
+        @Result(name = "success", location = "userinfo.jsp"),
+        @Result(name = "error", location = "/error.jsp"),
+        @Result(name = "detail", location = "userdetail.jsp")
+})
 
 public class UserInfoAction extends ActionSupport implements
         ModelDriven<User>, Preparable {
@@ -39,14 +43,6 @@ public class UserInfoAction extends ActionSupport implements
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public User getUser() {
@@ -84,10 +80,10 @@ public class UserInfoAction extends ActionSupport implements
         return SUCCESS;
     }
 
-    public void detail() throws IOException {
-        String id = ServletActionContext.getRequest().getParameter("id");
-        LOGGER.info("查看用户详情：" + id);
-        user = userService.get(id);
+    public String detail() throws IOException {
+        LOGGER.info("查看用户详情：" + user.getId());
+        System.out.println(user.getId());
+        user = userService.get(user.getId());
         AjaxUtil.ajaxJSONResponse(user);
         //指定输出内容类型和编码
         String contentType = "text/html;charset=utf-8";
@@ -96,12 +92,11 @@ public class UserInfoAction extends ActionSupport implements
         PrintWriter out = ServletActionContext.getResponse().getWriter();
         try{
             //直接进行文本操作
-            out.print(AjaxUtil.ajaxJSONResponse(user));
-            out.flush();
-            out.close();
+            return "detail";
         }catch(Exception ex){
             out.println(ex.toString());
         }
+        return ERROR;
     }
 
     @Override

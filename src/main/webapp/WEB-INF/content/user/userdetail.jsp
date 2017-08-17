@@ -11,6 +11,8 @@
     <title>TITLE</title>
 </head>
 <body>
+    userdetail page.
+
 
 </body>
 </html>

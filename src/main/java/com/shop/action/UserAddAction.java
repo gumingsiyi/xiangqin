@@ -1,6 +1,7 @@
 package com.shop.action;
 
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
@@ -11,12 +12,18 @@ import org.apache.struts2.convention.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.util.Date;
+import java.util.Map;
+
 @Controller
 @ParentPackage("struts-default")
 @Namespace("/admin")
 @Action("useradd")
 @AllowedMethods("detail")
-@Results({@Result(name = "success", location = "userinfo.jsp")})
+@Results({
+        @Result(name = "success", location = "userinfo.jsp"),
+        @Result(name = "error", location = "/error.jsp")
+})
 
 public class UserAddAction extends ActionSupport implements
         ModelDriven<User>, Preparable {
@@ -51,7 +58,15 @@ public class UserAddAction extends ActionSupport implements
     public String execute() throws Exception {
         LOGGER.info("添加用户" + user.getId());
         //Map session = ActionContext.getContext().getSession();
+        user.setAge(new Date().getYear()-user.getBirth().getYear());
+        User user_temp = userService.get(user.getId());
+        if (user_temp != null) {
+            Map request = (Map) ActionContext.getContext().get("request");
+            request.put("errorMsg", "用户已存在");
+            return ERROR;
+        }
         userService.save(user);
+        System.out.println(user);
         return SUCCESS;
     }
 

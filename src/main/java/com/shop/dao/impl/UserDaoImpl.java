@@ -26,12 +26,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User load(String id) {
-        return this.getCurrentSession().load(User.class, id);
+        return (User)this.getCurrentSession().load(User.class, id);
     }
 
     @Override
     public User get(String id) {
-        return this.getCurrentSession().get(User.class, id);
+        return (User)this.getCurrentSession().get(User.class, id);
     }
 
     @SuppressWarnings("unchecked")

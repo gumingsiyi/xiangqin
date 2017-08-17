@@ -4,7 +4,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by stiles on 2017/7/29.
@@ -87,7 +87,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "character", length = 100)
+    @Column(name = "cha", length = 100)
     public String getCharacter() {
         return character;
     }

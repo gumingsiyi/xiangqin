@@ -2,7 +2,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:useBean id="userInfos" scope="session" type="java.util.List"/>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
@@ -11,7 +10,6 @@
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 <head>
     <base href="<%=basePath%>"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -37,7 +35,7 @@
                         </div>
                     </div>
                     <div class="extra content">
-                        <a><i class="users icon"></i> 2 Members </a>
+                        <a href="${pageContext.request.contextPath}/user/userinfo!detail.action?id=<s:property value="#user.id"/>"> 详情 </a>
                     </div>
                 </div>
             </div>
