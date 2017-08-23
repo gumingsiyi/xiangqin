@@ -61,6 +61,7 @@ public class UserAddAction extends ActionSupport implements
         user.setAge(new Date().getYear()-user.getBirth().getYear());
         User user_temp = userService.get(user.getId());
         if (user_temp != null) {
+
             Map request = (Map) ActionContext.getContext().get("request");
             request.put("errorMsg", "用户已存在");
             return ERROR;

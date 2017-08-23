@@ -84,13 +84,14 @@ public class UserInfoAction extends ActionSupport implements
         LOGGER.info("查看用户详情：" + user.getId());
         System.out.println(user.getId());
         user = userService.get(user.getId());
-        AjaxUtil.ajaxJSONResponse(user);
         //指定输出内容类型和编码
         String contentType = "text/html;charset=utf-8";
         ServletActionContext.getResponse().setContentType(contentType);
         //获取输出流，然后使用
         PrintWriter out = ServletActionContext.getResponse().getWriter();
         try{
+            Map request = (Map) ActionContext.getContext().get("request");
+            request.put("user", user);
             //直接进行文本操作
             return "detail";
         }catch(Exception ex){
