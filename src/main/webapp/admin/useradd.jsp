@@ -9,7 +9,7 @@
     <title>添加信息</title>
 </head>
 <body>
-<div class="ui container">
+<div class="ui container" style="font-family:'Microsoft Yahei','simsun',serif">
     <h1>个人信息</h1>
     <div class="ui divider"></div>
     <form name="form1" action="useradd.action" method="post" onsubmit="return check()">
@@ -68,6 +68,21 @@
                                 此处不能为空！
                             </div>
                         </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="ui big ribbon label">身高</div>
+                </td>
+                <td>
+                    <div class="ui input">
+                        <label>
+                            <input type="text" name="height"> CM
+                        </label>
+                    </div>
+                    <div id="height" style="display: none;" class="ui left pointing red basic label">
+                        此处不能为空！
                     </div>
                 </td>
             </tr>
@@ -162,7 +177,7 @@
                 <td>
                     <div class="ui input">
                         <label>
-                            <input type="text" name="income"> K
+                            ¥ <input type="text" name="income">
                         </label>
                     </div>
                 </td>
@@ -240,6 +255,10 @@
             return false;
         } else if (document.form1.sex.value === "") {
             $("#sex").show();
+            return false;
+        } else if (document.form1.height.value === "") {
+            $("#height").show();
+            document.form1.height.focus();
             return false;
         } else if (document.form1.IDno.value === "") {
             $("#IDno").show();
