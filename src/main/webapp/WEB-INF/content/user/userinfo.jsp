@@ -28,10 +28,10 @@
                     <div class="content">
                         <a class="header"><s:property value="#user.name"/></a>
                         <div class="meta">
-                            <span class="date">年龄：<s:property value="#user.age"/></span>
+                            <span class="date">年龄：<s:property value="#user.age"/> 岁</span>
                         </div>
                         <div class="meta">
-                            <span class="date">身高：<s:property value="#user.height"/></span>
+                            <span class="date">身高：<s:property value="#user.height"/> CM</span>
                         </div>
                         <div class="meta">
                             <span class="date">工作：<s:property value="#user.job"/></span>
