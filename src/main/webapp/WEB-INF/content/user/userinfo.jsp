@@ -31,6 +31,9 @@
                             <span class="date">年龄：<s:property value="#user.age"/></span>
                         </div>
                         <div class="meta">
+                            <span class="date">身高：<s:property value="#user.height"/></span>
+                        </div>
+                        <div class="meta">
                             <span class="date">工作：<s:property value="#user.job"/></span>
                         </div>
                     </div>
