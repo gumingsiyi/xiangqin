@@ -21,7 +21,7 @@ import java.util.Map;
 @Action("useradd")
 @AllowedMethods("detail")
 @Results({
-        @Result(name = "success", location = "userinfo.jsp"),
+        @Result(name = "success",type = "redirect", location = "/user/userinfo.action"),
         @Result(name = "error", location = "/error.jsp")
 })
 
