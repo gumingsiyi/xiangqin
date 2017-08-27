@@ -25,6 +25,7 @@ public class User {
     private String intro;
     private int photo;
     private String IDno;
+    private int height;
 
     @Id
     @Column(name = "id", nullable = false, length = 15)
@@ -164,6 +165,16 @@ public class User {
 
     public void setIDno(String IDno) {
         this.IDno = IDno;
+    }
+
+    @Basic
+    @Column(name = "height", nullable = false)
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     @Override
