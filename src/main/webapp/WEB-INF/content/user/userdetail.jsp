@@ -9,6 +9,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
     <title>详细信息</title>
     <jsp:include page="/util.jsp"/>
 </head>
@@ -73,7 +76,21 @@
          onerror="error(6)"
          src="${pageContext.request.contextPath}/photo/<s:property value="#request.user.id"/>/6.jpg">
     <div id="d6" class="ui divider"></div>
+    <div class="ui container">
+        <div class="ui two column grid">
+            <div class="ui column left aligned">
+                电话：<s:property value="#request.user.id"/>
+            </div>
+            <div class="ui column right aligned">
+                <form action="${pageContext.request.contextPath}/admin/userdel.action" method="post">
+                    <input type="hidden" name="id" value="<s:property value="#request.user.id"/>">
+                    <button class="ui negative button">删 除</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
 </body>
 <script>
     function sex() {
@@ -105,6 +122,5 @@
         document.getElementById("sex").innerHTML = "性别：" + sex();
         document.getElementById("edu").innerHTML = "学历：" + edu();
     });
-
 </script>
 </html>

@@ -11,6 +11,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <title>列 表</title>
     <base href="<%=basePath%>"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <jsp:include page="/util.jsp"/>
@@ -22,11 +23,14 @@
             <div class="ui segment">
                 <div class="ui fluid card">
                     <div class="ui slide masked reveal image">
-                        <img src="${pageContext.request.contextPath}/images/elliot.jpg" class="visible content">
-                        <img src="${pageContext.request.contextPath}/images/kristy.png" class="hidden content">
+                        <img src="${pageContext.request.contextPath}/photo/<s:property value="#user.id"/>/1.jpg" class="visible content">
+                        <img src="${pageContext.request.contextPath}/photo/<s:property value="#user.id"/>/2.jpg" class="hidden content">
                     </div>
                     <div class="content">
-                        <a class="header"><s:property value="#user.name"/></a>
+                        <a class="header"
+                           href="${pageContext.request.contextPath}/user/userinfo!detail.action?id=<s:property value="#user.id"/>">
+                            <s:property value="#user.name"/>
+                        </a>
                         <div class="meta">
                             <span class="date">年龄：<s:property value="#user.age"/> 岁</span>
                         </div>

@@ -6,7 +6,6 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
 import com.shop.entity.User;
 import com.shop.service.UserService;
-import com.shop.utils.AjaxUtil;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.*;
@@ -40,6 +39,7 @@ public class UserInfoAction extends ActionSupport implements
 
 
     private UserService userService;
+
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
