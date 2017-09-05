@@ -18,6 +18,7 @@
         </a>
     </div>
     <div class="column">
+        <a href="/admin/useradd.jsp"/>
         <button class="fluid ui massive button" style="padding-top: 100px; padding-bottom: 100px;">
             <i class="user icon"></i>
             管理
