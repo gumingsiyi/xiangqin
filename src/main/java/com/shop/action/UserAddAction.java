@@ -12,6 +12,7 @@ import org.apache.struts2.convention.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
@@ -57,8 +58,11 @@ public class UserAddAction extends ActionSupport implements
     @Override
     public String execute() throws Exception {
         LOGGER.info("添加用户" + user.getId());
+        Calendar calendar = Calendar.getInstance();
+        Calendar userCa = Calendar.getInstance();
+        userCa.setTime(user.getBirth());
         //Map session = ActionContext.getContext().getSession();
-        user.setAge(new Date().getYear()-user.getBirth().getYear());
+        user.setAge(calendar.get(Calendar.YEAR) - userCa.get(Calendar.YEAR));
         User user_temp = userService.get(user.getId());
         if (user_temp != null) {
 
